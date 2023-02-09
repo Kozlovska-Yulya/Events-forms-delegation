@@ -1,5 +1,5 @@
-const emailInputElem = document.querySelector('email');
-const passwordInputElem = document.querySelector('password');
+const emailInputElem = document.querySelector('#email');
+const passwordInputElem = document.querySelector('#password');
 const emailErrorElem = document.querySelector('.error-text_email');
 const passwordErrorElem = document.querySelector('.error-text_password');
 
