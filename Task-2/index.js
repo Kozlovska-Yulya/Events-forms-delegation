@@ -59,7 +59,7 @@ const onSeatSelect = (event) => {
 
   const selectedSeatElem = document.querySelector('.board__selected-seat');
 
-  selectedSeatElem.textContent = `S ${sectorNumber} - L ${lineNumber} - ${seatNumber}`;
+  selectedSeatElem.textContent = `S ${sectorNumber} - L ${lineNumber} - S ${seatNumber}`;
 };
 
 arenaElem.addEventListener('click', onSeatSelect);
