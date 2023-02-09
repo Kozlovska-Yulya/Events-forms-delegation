@@ -27,8 +27,21 @@ function onEmailChange(event) {
 
 function onPasswordChange(event) {
   const errorText = validate('password', event.target.value);
-  emailErrorElem.textContent = errorText;
+  passwordErrorElem.textContent = errorText;
 }
 
 emailInputElem.addEventListener('input', onEmailChange);
 passwordInputElem.addEventListener('input', onPasswordChange);
+
+const formElem = document.querySelector('.login-form');
+
+function onFormSubmit(event) {
+  event.preventDefault();
+  const formData = [...new FormData(formElem)].reduce(
+    (acc, [field, value]) => ({ ...acc, [field]: value }),
+    {}
+  );
+  alert(JSON.stringify(formData));
+}
+
+formElem.addEventListener('submit', onFormSubmit);
