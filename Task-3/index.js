@@ -9,13 +9,15 @@ const tasks = [
 const listElem = document.querySelector('.list');
 
 const renderTasks = (tasksList) => {
+  listElem.innerHTML = '';
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
-    .map(({ text, done }) => {
+    .map(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
+      checkbox.setAttribute('data-id', id);
       checkbox.checked = done;
       checkbox.classList.add('list__item-checkbox');
       if (done) {
@@ -42,7 +44,6 @@ function haveValue() {
     return;
   }
 
-  listElem.innerHTML = '';
   tasks.push({
     text: valueInputElem,
     done: false,
@@ -53,12 +54,15 @@ function haveValue() {
 }
 
 function checkboxClick(event) {
-  const isCheckbox = event.target.classList.contains('.list__item-checkbox');
+  const isCheckbox = event.target.classList.contains('list__item-checkbox');
   if (!isCheckbox) {
     return;
   }
+
   const taskData = tasks.find(({ id }) => id === event.target.dataset.id);
+
   Object.assign(taskData, { done: event.target.checked });
+  renderTasks(tasks);
 }
 
 createBtnElem.addEventListener('click', haveValue);
